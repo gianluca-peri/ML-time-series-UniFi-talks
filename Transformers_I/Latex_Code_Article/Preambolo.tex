@@ -1,0 +1,98 @@
+\documentclass[10pt,a4paper]{scrarticle}
+
+\usepackage[linedheaders, eulerchapternumbers, eulermath , beramono , parts]{classicthesis} %uses classicthesis, uses euler, and specifies the font beramono for typewriter monospaced fonts (I don't know if parts is necessary)
+
+\usepackage{mathtools} %Per dcases
+
+\usepackage[T1]{fontenc} %Per buona codifica lettere (importante che stia prima del font, credo)
+\usepackage{beton} %Specifica l'uso del font concrete
+
+\hypersetup{ %this sets up hyperlink style for classicthesis (all black)
+	colorlinks=true,
+	urlcolor=black,
+	linkcolor=black,
+	citecolor=black
+}
+
+\setlength{\parindent}{0pt} %Evita l'indent fra paragrafi
+
+\setcounter{tocdepth}{3} %profondità dell'indice
+
+%Inizio layout
+\areaset[0.4in]{6.4in}{9.5in}
+\setlength\topmargin{-35pt}
+\pagestyle{scrheadings}
+%Fine layout
+
+\usepackage{amsmath} %Per matematica
+
+\usepackage{floatrow} %Pacchetti per figure fighe (uso: sotto)
+\floatsetup[figure]{capposition=beside,capbesideposition={top,right}}
+
+\usepackage[italian]{babel} %Per lingua italiana
+
+\usepackage{tablefootnote} %WorkAround footnote
+\makeatletter 
+\AfterEndEnvironment{mdframed}{%
+ \tfn@tablefootnoteprintout% 
+ \gdef\tfn@fnt{0}% 
+}
+\makeatother
+
+\usepackage[framemethod=TikZ , nobreak=true]{mdframed} %Per mio stile di frame
+\mdfdefinestyle{rst}{%
+roundcorner=10pt,
+linewidth=1pt,
+linecolor = lightgray,
+backgroundcolor=white,
+topline = true,    
+bottomline = true,
+leftline = true,
+rightline = true
+}
+
+%This is the tag for the name of this stile! Inspired by the work of Professor Luca Baldini
+\newcommand{\Noo}{
+N\raisebox{+2pt}{\(\sigma\)}\raisebox{-1pt}{o}!
+}
+
+%START OF WARNING BOX DEFINITION
+
+\usepackage{fourier-orns}
+\definecolor{warningColor}{named}{Red}
+
+\newcommand{\warningSymbol}{\raisebox{\depth}{\danger}}
+
+\usetikzlibrary{calc}
+\tikzset{
+  warningsymbol/.style={
+      rectangle,
+      draw=warningColor,
+      fill=white,
+      scale=1,
+      overlay}
+}
+
+\mdfdefinestyle{warning}{%
+ hidealllines=false,leftline=true,
+ skipabove=12,skipbelow=12pt,
+ innertopmargin=0.7em,%
+ innerbottommargin=0.7em,%
+ innerrightmargin=0.7em,%
+ rightmargin=0.7em,%
+ innerleftmargin=1.7em,%
+ leftmargin=0.7em,%
+ middlelinewidth=.2em,%
+ linecolor=warningColor,%
+ fontcolor=red,%
+ firstextra={\path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$) 
+                           node[warningsymbol] {\danger};},%
+ secondextra={\path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$) 
+                           node[warningsymbol] {\danger};},%
+ middleextra={\path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$) 
+                           node[warningsymbol] {\danger};},%
+ singleextra={\path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$) 
+                           node[warningsymbol] {\danger};},%
+}
+
+%END OF WARNING BOX DEFINITION
